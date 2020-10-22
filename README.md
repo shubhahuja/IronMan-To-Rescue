@@ -31,3 +31,6 @@ I used pygame for GUI and sqlite3 for backend
 I need to use a lot of collision detection and physics to make player and objects moves, and to reduce points and life
 
 I followed modularity and abstraction by dividing my project into small parts which made it easier to code and debug
+
+
+<h5> I have added screenshots of game in README.pdf</h5>
