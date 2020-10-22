@@ -132,8 +132,7 @@ def over(surface,text,name,points):
                     and pygame.mouse.get_pos()[1]>=start.rect.y and pygame.mouse.get_pos()[1]<=start.rect.y+100:
                     color2=RED_BRIGHT
                     if pygame.mouse.get_pressed()[0]==1:
-                        pygame.quit()
-                        sys.exit() 
+                        return                        
                 else:
                     color=RED
                     color2=RED
@@ -206,4 +205,3 @@ def over(surface,text,name,points):
             clock=pygame.time.Clock()
             clock.tick(30)
 
-over(surface,"GAME OVER","ab",100)

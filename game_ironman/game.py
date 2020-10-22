@@ -92,7 +92,7 @@ def game(image_rect,game_status,image_rect2,bgx1,bgx2,bars,image,try_img,BLACK,s
         
             
             for event in pygame.event.get():
-                print(name)
+                
                 if event.type == QUIT or (event.type == KEYDOWN and event.key == K_ESCAPE):
                     pygame.quit()
                     sys.exit()    
