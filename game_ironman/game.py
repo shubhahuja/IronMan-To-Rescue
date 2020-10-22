@@ -2,7 +2,7 @@ import random
 import sys
 import pygame
 from pygame.locals import *
-
+from game_over import *
 
 pygame.init() #initializing pygame
 pygame.display.set_caption("GAME")
@@ -83,13 +83,16 @@ bars=Bars()
 text=""
 up_stat=False
 
-def game(image_rect,game_status,image_rect2,bgx1,bgx2,bars,image,try_img,BLACK,start,points,count,bg,text,x1,up_stat):
-
+def game(image_rect,game_status,image_rect2,bgx1,bgx2,bars,image,try_img,BLACK,start,points,count,bg,text,x1,up_stat,name):
+    life=5
+    cooldown=0
+    c=False
+    safe=False
     while game_status:
         
             
             for event in pygame.event.get():
-                
+                print(name)
                 if event.type == QUIT or (event.type == KEYDOWN and event.key == K_ESCAPE):
                     pygame.quit()
                     sys.exit()    
@@ -131,23 +134,41 @@ def game(image_rect,game_status,image_rect2,bgx1,bgx2,bars,image,try_img,BLACK,s
                 image_rect.y=50
             
             if image_rect.colliderect(image_rect2):
-                text="OUCH -4"
-                points-=2
-                
-                count=-10
+                if safe==False:
+                    text="OUCH -4"
+                    points-=2
+                    life-=1
+                    count=-10
+                    image_rect.y=50
+                    
+                    cooldown=10
+                else:
+                    text="Safe for " +str(cooldown)
             for i in bars.bar_list:
                 if image_rect.colliderect(i.rect):
-                   
-                    points-=1
-                    text="GOOO UPPP  -2"
-                    count=-10
+                    if safe==False:
+                        points-=1
+                        life-=1
+                        text="GOOO UPPP  -2"
+                        count=-10
+                        image_rect.y=50
+                        
+                        cooldown=10
+                    else:
+                        text="Safe for " +str(cooldown)
             
             count+=1
             if count>0:
                 text=""
+            if cooldown>0:
+                safe=True
+                cooldown-=1
+            if cooldown<=0:
+                safe=False
 
-            if points<-100:
+            if points<-100 or life<0:
                 game_over_text_1="GAME OVER!"
+                over(surface,"GAME OVER",name,points)
                 game_status=False
                 
 
@@ -164,10 +185,11 @@ def game(image_rect,game_status,image_rect2,bgx1,bgx2,bars,image,try_img,BLACK,s
             pygame.font.init() 
             myfont = pygame.font.SysFont('Comic Sans MS', 20)
             textsurface = myfont.render('Score : '+ str(points) , False,  (0,35,102))
+            lifesurface = myfont.render('life : '+ str(life) , False,  (0,35,102))
             text2=myfont.render(text , False,  (255,0,0))
             surface.blit(textsurface,(430,30))
             surface.blit(text2,(200,30))
-            
+            surface.blit(lifesurface,(430,60))
             pygame.display.update()
             clock=pygame.time.Clock()
             clock.tick(30)

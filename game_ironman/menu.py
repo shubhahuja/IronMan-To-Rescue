@@ -58,7 +58,7 @@ start=button_start()
 def menu(surface,text="LET THE GAMES BEGIN",points=0):
     print(text)
     print(points)
-
+    a=""
     while True:
         
             
@@ -68,12 +68,17 @@ def menu(surface,text="LET THE GAMES BEGIN",points=0):
                 if event.type == QUIT or (event.type == KEYDOWN and event.key == K_ESCAPE):
                     pygame.quit()
                     sys.exit()   
-                
+                elif event.type == KEYDOWN:
+                    if (chr(event.key)>="a" and chr(event.key)<="z") or (chr(event.key)>="0" and chr(event.key)<="9") :
+                        a=a+(chr(event.key))
+                    if event.key==K_BACKSPACE:
+                        a=a[:len(a)-1]
+
                 if pygame.mouse.get_pos()[0]>=start.rect.x and pygame.mouse.get_pos()[0]<=start.rect.x+200 \
                     and pygame.mouse.get_pos()[1]>=start.rect.y and pygame.mouse.get_pos()[1]<=start.rect.y+200:
                     color=RED_BRIGHT
                     if pygame.mouse.get_pressed()[0]==1:
-                        player_choose(surface)
+                        player_choose(surface,a)
                 else:
                     color=RED
                 
@@ -106,16 +111,18 @@ def menu(surface,text="LET THE GAMES BEGIN",points=0):
             pygame.draw.rect(surface,color,start.rect)           
 
             pygame.font.init() 
-            myfont = pygame.font.SysFont('Comic Sans MS', 20)
+            myfont = pygame.font.SysFont('Comic Sans MS', 30)
             start_text = myfont.render('START ', False,  (0,35,102))
-            surface.blit(start_text,(start.rect.x+70,start.rect.y+30))
+            surface.blit(start_text,(start.rect.x+50,start.rect.y+30))
 
             game_over_text = myfont.render(text, False,  (0,35,102))
             
-            score_text=myfont.render('Score = ' +str(points), False,  (0,35,102))
+            
+            name_text=myfont.render('Enter Name = '  +a, False,  (64,224,208))
 
-            surface.blit(game_over_text,(400,100))
-            surface.blit(score_text,(400,400))
+            surface.blit(game_over_text,(360,70))
+            
+            surface.blit(name_text,(320,600))
             pygame.display.update()
             clock=pygame.time.Clock()
             clock.tick(30)

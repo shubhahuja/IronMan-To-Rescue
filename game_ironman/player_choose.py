@@ -76,7 +76,7 @@ war_color=(134,138,136)
 falcon_color=(0,100,0)
 vision_color=(255,173,1)
 
-def player_choose(surface):
+def player_choose(surface,name):
     iron_color=(100,0,0)
     thor_color=(0,0,80)
     war_color=(134,138,136)
@@ -98,7 +98,7 @@ def player_choose(surface):
                     if pygame.mouse.get_pressed()[0]==1:
                         image=ironman_fly
                         image_rect=ironman_fly_rect
-                        a=game(image_rect,game_status,image_rect2,bgx1,bgx2,bars,image,try_img,BLACK,start,points,count,bg,text,x1,up_stat)
+                        a=game(image_rect,game_status,image_rect2,bgx1,bgx2,bars,image,try_img,BLACK,start,points,count,bg,text,x1,up_stat,name)
                 else:
                     iron_color=(100,0,0)
                 
@@ -109,7 +109,7 @@ def player_choose(surface):
                     if pygame.mouse.get_pressed()[0]==1:
                         image=thor_fly
                         image_rect=thor_fly_rect
-                        game(image_rect,game_status,image_rect2,bgx1,bgx2,bars,image,try_img,BLACK,start,points,count,bg,text,x1,up_stat)
+                        game(image_rect,game_status,image_rect2,bgx1,bgx2,bars,image,try_img,BLACK,start,points,count,bg,text,x1,up_stat,name)
                 else:
                     thor_color=(0,0,80)
 
@@ -120,7 +120,7 @@ def player_choose(surface):
                     if pygame.mouse.get_pressed()[0]==1:
                         image=falcon_fly
                         image_rect=falcon_fly_rect
-                        game(image_rect,game_status,image_rect2,bgx1,bgx2,bars,image,try_img,BLACK,start,points,count,bg,text,x1,up_stat)
+                        game(image_rect,game_status,image_rect2,bgx1,bgx2,bars,image,try_img,BLACK,start,points,count,bg,text,x1,up_stat,name)
                 else:
                     falcon_color=(0,100,0)
 
@@ -132,7 +132,7 @@ def player_choose(surface):
                     if pygame.mouse.get_pressed()[0]==1:
                         image=war_machine_fly
                         image_rect=war_machine_fly_rect
-                        game(image_rect,game_status,image_rect2,bgx1,bgx2,bars,image,try_img,BLACK,start,points,count,bg,text,x1,up_stat)
+                        game(image_rect,game_status,image_rect2,bgx1,bgx2,bars,image,try_img,BLACK,start,points,count,bg,text,x1,up_stat,name)
                 else:
                     war_color=(134,138,136)
 
@@ -143,14 +143,14 @@ def player_choose(surface):
                     if pygame.mouse.get_pressed()[0]==1:
                         image=vision_fly
                         image_rect=vision_fly_rect
-                        game(image_rect,game_status,image_rect2,bgx1,bgx2,bars,image,try_img,BLACK,start,points,count,bg,text,x1,up_stat)
+                        game(image_rect,game_status,image_rect2,bgx1,bgx2,bars,image,try_img,BLACK,start,points,count,bg,text,x1,up_stat,name)
                         
                 else:
                     vision_color=(255,173,1)
 
 
                 
-           
+
 
             surface.fill((0,0,0))
             surface.blit(bg_player,(0,0))
