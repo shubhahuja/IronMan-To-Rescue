@@ -1,4 +1,4 @@
-<h1>IronMan to Rescue</h1>
+<h1>Marvel Fighters</h1>
 
 **I am a huge marvel fan and when I started to learn pygame I wanted to make a project related to that.**
 
